@@ -8,12 +8,16 @@
     $books = $dao->getBorrows();
     $data = array();
     foreach ($books as $row) {
+        $dateRetour = new DateTime($row['returnDate']);
+        $today = new DateTime();
+        $interval = $dateRetour->diff($today);
+        $differenceEnJours = $interval->days;
 
-         $dateEmprunt = new DateTime($row['borrowDate']);
-         $dateRetour = new DateTime($row['returnDate']);
+        // Si la date de retour est dépassée, $differenceEnJours sera négatif
+        if ($dateRetour < $today) {
+            $differenceEnJours *= -1;
+        }
 
-         $interval = $dateEmprunt->diff($dateRetour);
-         $differenceEnJours = $interval->days;
         $data[] = array(
             "book_id" => $row['book_id'],
             "user_id" => $row['user_id'],
@@ -25,6 +29,6 @@
         );
     }
 
-    header('Content-Type: application/json');
+header('Content-Type: application/json');
 echo json_encode($data);
 exit;
