@@ -22,9 +22,8 @@ else{
             "title" => $row['title'],
             "authors" => $row['authors'],
             "shortDescription" => $row['shortDescription'],
-            "IsAvailable" => $isAvailable,
-            "categories" => $row['categories']
-            
+            "categories" => $row['categories'],
+            "IsAvailable" => $isAvailable
         );
     }
 

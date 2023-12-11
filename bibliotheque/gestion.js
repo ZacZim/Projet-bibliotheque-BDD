@@ -495,7 +495,8 @@ $(document).ready(function () {
                             books.title,
                             books.authors,
                             books.shortDescription,
-                            books.IsAvailable, i
+                            books.categories,
+                            books.IsAvailable
                             ]).draw();
                         });
 
